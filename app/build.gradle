@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.pedrocarrillo.expensetracker"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        javaCompileOptions {
+            annotationProcessorOptions.includeCompileClasspath = true
+        }
+    }
+
+   /* signingConfigs {
+        release {
+            def Properties localProps = new Properties()
+            localProps.load(new FileInputStream(file('../local.properties')))
+            storeFile file("tracker_expense.jks")
+            storePassword localProps["storePass"]
+            keyAlias localProps["alias"]
+            keyPassword localProps["pass"]
+        }
+    } */
+
+    buildTypes {
+        release {
+            //signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+def androidSdkVersion = "28.0.0"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+//    implementation 'com.google.android.gms:play-services:7.8.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
+    implementation 'io.realm:realm-android:0.82.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.1.4'
+}
